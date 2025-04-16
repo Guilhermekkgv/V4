@@ -266,6 +266,47 @@ function Linux.Create(config)
         ZIndex = 2
     })
 
+    local ExecutorLabel
+    if config.IdentifyExecutor then
+        local executorName = identifyexecutor and identifyexecutor() or "Unknown"
+        if executorName ~= "Unknown" then
+            ExecutorLabel = Linux.Instance("Frame", {
+                Parent = TopBar,
+                BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                BackgroundTransparency = 0,
+                Size = UDim2.new(0, 80, 0, 16),
+                Position = UDim2.new(0, TitleLabel.TextBounds.X + 60, 0, 4),
+                ZIndex = 2
+            })
+
+            local ExecutorGradient = Linux.Instance("UIGradient", {
+                Parent = ExecutorLabel,
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 130, 180)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 105, 180))
+                }),
+                Rotation = 45
+            })
+
+            Linux.Instance("UICorner", {
+                Parent = ExecutorLabel,
+                CornerRadius = UDim.new(0, 4)
+            })
+
+            Linux.Instance("TextLabel", {
+                Parent = ExecutorLabel,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(1, 0, 1, 0),
+                Font = Enum.Font.SourceSansBold,
+                Text = executorName,
+                TextColor3 = Color3.fromRGB(255, 255, 255),
+                TextSize = 12,
+                TextXAlignment = Enum.TextXAlignment.Center,
+                ZIndex = 2
+            })
+        end
+    end
+
     local MinimizeButton = Linux.Instance("TextButton", {
         Parent = TopBar,
         BackgroundTransparency = 1,
