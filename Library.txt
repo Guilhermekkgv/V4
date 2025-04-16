@@ -262,7 +262,7 @@ function Linux.Create(config)
         Parent = Main,
         BackgroundTransparency = 1,
         Position = UDim2.new(0, 0, 0, 25),
-        Size = UDim2.new(0, config.TabWidth or 110, 1, -25),
+        Size = UDim2.new(0, config.TabWidth or 110, 0, 70),
         ZIndex = 2,
         BorderSizePixel = 0
     })
@@ -271,7 +271,7 @@ function Linux.Create(config)
         Parent = TabsBar,
         BackgroundTransparency = 1,
         Position = UDim2.new(0, 0, 0, 0),
-        Size = UDim2.new(1, 0, 1, 0),
+        Size = UDim2.new(1, 0, 1, -40),
         CanvasSize = UDim2.new(0, 0, 0, 0),
         AutomaticCanvasSize = Enum.AutomaticSize.Y,
         ScrollBarThickness = 0,
@@ -291,6 +291,30 @@ function Linux.Create(config)
         Parent = TabHolder,
         PaddingLeft = UDim.new(0, 5),
         PaddingTop = UDim.new(0, 5)
+    })
+
+    local ProfileIcon = Linux.Instance("ImageLabel", {
+        Parent = TabsBar,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(0, 40, 0, 40),
+        Position = UDim2.new(0, 5, 1, -40),
+        Image = Players:GetUserThumbnailAsync(LocalPlayer.UserId, Enum.ThumbnailType.AvatarBust, Enum.ThumbnailSize.Size100x100),
+        ZIndex = 3
+    })
+
+    Linux.Instance("UICorner", {
+        Parent = ProfileIcon,
+        CornerRadius = UDim.new(1, 0)
+    })
+
+    local Outline = Linux.Instance("Frame", {
+        Parent = TabsBar,
+        BackgroundColor3 = Color3.fromRGB(100, 100, 100),
+        BackgroundTransparency = 0.7,
+        Size = UDim2.new(1, -10, 0, 1),
+        Position = UDim2.new(0, 5, 1, -45),
+        ZIndex = 3,
+        BorderSizePixel = 0
     })
 
     local Content = Linux.Instance("Frame", {
@@ -1123,7 +1147,7 @@ function Linux.Create(config)
 
             local TextBox = Linux.Instance("TextBox", {
                 Parent = Input,
-                BackgroundColor3 = Color3.fromRGB(28, 28, 28),
+                BackgroundColor3 = Color3.fromRGB(20, 20, 20),
                 Size = UDim2.new(0.25, -10, 0, 24),
                 Position = UDim2.new(1, -90, 0.5, -12),
                 Font = Enum.Font.Gotham,
